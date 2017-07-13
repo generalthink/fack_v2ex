@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 minutes"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./logback.xsd">
+	<!-- https://logback.qos.ch/manual/index.html -->
+	
+    <!-- Output full logs to file -->
+    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/v2ex.log</file>
+        <encoder>
+        	<!-- p 表示日志级别,t表示线程名称(8.8分别表示最小宽度和最大宽度),c表示日志logger名称,M表示Method,L表示多少行,m表示日志内容,n表示换行符 -->
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}|%5p|%8.8t|%c.%M:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/history_v2ex.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxHistory>31</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Output WARN, ERROR logs to file -->
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/err_v2ex.log</file>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}|%5p|%8.8t|%c.%M:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/archive/history_err_v2ex.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxHistory>31</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>50MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!--direct log messages to stdout -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}|%5p|%8.8t|%30.30c.%10M:%3L]%m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.generalthink.fackv2ex" level="DEBUG"/>
+    <logger name="com.generalthink.fackv2ex.commmon.dao" level="DEBUG"/>
+    <logger name="org.mybatis" level="DEBUG"/>
+
+    <root level="WARN">
+        <appender-ref ref="FILE_ALL"/>
+        <appender-ref ref="FILE_ERROR"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

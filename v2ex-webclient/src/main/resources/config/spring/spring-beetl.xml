@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
+        <property name="configFileResource" value="classpath:config/beetl/beetl.properties"/>
+	</bean>
+	
+	<bean id="viewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver">
+		<property name="suffix" value=".html" />
+		<!-- 不要配置prefix属性,要不然报找不到模板错误,直接由beetl.properties中的RESOURCE.root指定 -->
+		<!-- <property name="prefix" value="/WEB-INF/views/"/> -->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		
+	</bean>
+
+</beans>
