@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>v2ex-data</module>
-		<module>v2ex-webclient</module>
+		<module>v2ex-web</module>
 	</modules>
 	<properties>
 		<java.version>1.8</java.version>
