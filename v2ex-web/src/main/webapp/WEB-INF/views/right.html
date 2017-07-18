@@ -1,0 +1,207 @@
+<div id="Rightbar">
+      <div class="sep20"></div>
+      <div class="box">
+        <div class="cell">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td width="48" valign="top">
+                  <a href="/member/thinkmore">
+                    <img src="//v2ex.assets.uxengine.net/avatar/f667/9323/67570_large.png?m=1489548048" class="avatar" border="0" align="default" style="max-width: 48px; max-height: 48px;">
+                  </a>
+                </td>
+                <td width="10" valign="top"></td>
+                <td width="auto" align="left"><span class="bigger"><a href="/member/thinkmore">thinkmore</a></span>
+                  <div class="sep5"></div>
+                  <span class="fade">坚持，坚持，坚持！</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="sep10"></div>
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td width="33%" align="center">
+                  <a href="/my/nodes" class="dark" style="display: block;"><span class="bigger">2</span>
+                    <div class="sep3"></div><span class="fade">节点收藏</span></a>
+                </td>
+                <td width="34%" style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);" align="center">
+                  <a href="/my/topics" class="dark" style="display: block;"><span class="bigger">2</span>
+                    <div class="sep3"></div><span class="fade">主题收藏</span></a>
+                </td>
+                <td width="33%" align="center">
+                  <a href="/my/following" class="dark" style="display: block;"><span class="bigger">19</span>
+                    <div class="sep3"></div><span class="fade">特别关注</span></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cell">
+          <div style="width: 250px; background-color: #f0f0f0; height: 3px; display: inline-block; vertical-align: middle;">
+            <div style="width: 21px; background-color: #ccc; height: 3px; display: inline-block;"></div>
+          </div>
+        </div>
+        <div class="cell" style="padding: 5px;">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td width="32">
+                  <a href="/new">
+                    <img src="/static/img/flat_compose.png?v=7d21f0767aeba06f1dec21485cf5d2f1" width="32" border="0">
+                  </a>
+                </td>
+                <td width="10"></td>
+                <td width="auto" valign="middle" align="left">
+                  <a href="/new">创作新主题</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="inner">
+          <div class="fr" id="money">
+            <a href="/balance" class="balance_area" style="">49
+              <img src="//v2ex.assets.uxengine.net/static/img/silver.png" alt="S" align="absmiddle" border="0" style="padding-bottom: 2px;"> 70
+              <img src="//v2ex.assets.uxengine.net/static/img/bronze.png" alt="B" align="absmiddle" border="0">
+            </a>
+          </div>
+          <a href="/notifications" class="fade">0 条未读提醒</a>
+        </div>
+      </div>
+      <div class="sep20"></div>
+      <!--  <div class="box">
+       <div class="inner" align="center">
+         <a href="https://shimo.im/doc/G3ckHEVF3f4qANHk" target="_blank">
+           <img src="//v2ex.assets.uxengine.net/assets/sidebar/shimo_20170315_1.jpg" border="0" width="250" height="250" alt="石墨文档">
+         </a>
+       </div>
+       <div class="sidebar_compliance">
+         <a href="/advertise" target="_blank">广告</a>
+       </div>
+     </div> -->
+      <div class="sep20"></div>
+      <div class="box" id="TopicsHot">
+        <div class="cell"><span class="fade">今日热议主题</span></div>
+        <div class="cell from_120854 hot_t_352006">
+          <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td width="24" valign="middle" align="center">
+                  <a href="/member/ray0625">
+                    <img src="//v2ex.assets.uxengine.net/avatar/1e65/287f/120854_normal.png?m=1447213851" class="avatar" border="0" align="default" style="max-width: 24px; max-height: 24px;">
+                  </a>
+                </td>
+                <td width="10"></td>
+                <td width="auto" valign="middle">
+                  <span class="item_hot_topic_title">
+                <a href="/t/352006">想买个山地车，上班骑，有推荐的吗？</a>
+                </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <script type="text/javascript">
+        blocked = [];
+        ignored_topics = [348169, 347731];
+        $("#TopicsHot").children('.cell').each(function(index) {
+          for (i in blocked) {
+            if ($(this).hasClass('from_' + blocked[i])) {
+              $(this).css('display', 'none');
+            }
+          }
+          for (i in ignored_topics) {
+            css_class = 'hot_t_' + ignored_topics[i];
+            if ($(this).hasClass(css_class)) {
+              $(this).css('display', 'none');
+            }
+          }
+        });
+        </script>
+      </div>
+      <div class="sep20"></div>
+      <div class="box">
+        <div class="cell">
+          <div class="fr"></div><span class="fade">最热节点</span></div>
+        <div class="cell">
+          <a href="/go/qna" class="item_node">问与答</a>
+          <a href="/go/share" class="item_node">分享发现</a>
+          <a href="/go/jobs" class="item_node">酷工作</a>
+          <a href="/go/programmer" class="item_node">程序员</a>
+          <a href="/go/macos" class="item_node">macOS</a>
+          <a href="/go/create" class="item_node">分享创造</a>
+          <a href="/go/python" class="item_node">Python</a>
+          <a href="/go/iphone" class="item_node">iPhone</a>
+          <a href="/go/android" class="item_node">Android</a>
+          <a href="/go/apple" class="item_node">Apple</a>
+          <a href="/go/linux" class="item_node">Linux</a>
+          <a href="/go/idev" class="item_node">iDev</a>
+          <a href="/go/mbp" class="item_node">MacBook Pro</a>
+        </div>
+        <div class="inner">
+          <a href="/index.xml" target="_blank">
+            <img src="/static/img/rss.png" align="absmiddle" border="0" style="margin-top:-3px;">
+          </a>&nbsp;
+          <a href="/index.xml" target="_blank">RSS</a>
+        </div>
+      </div>
+      <div class="sep20"></div>
+      <!--  <div class="box">
+       <div class="cell">
+         <div class="fr"></div><span class="fade">最近新增节点</span></div>
+       <div class="inner">
+         <a href="/go/algolia" class="item_node">Algolia</a>
+         <a href="/go/immigration" class="item_node">移民</a>
+         <a href="/go/retroarch" class="item_node">RetroArch</a>
+         <a href="/go/zelda" class="item_node">塞尔达传说</a>
+         <a href="/go/memcached" class="item_node">memcached</a>
+         <a href="/go/tamiya" class="item_node">田宫模型</a>
+         <a href="/go/hue" class="item_node">Hue</a>
+         <a href="/go/mactype" class="item_node">MacType</a>
+         <a href="/go/snes" class="item_node">SNES</a>
+         <a href="/go/retro" class="item_node">怀旧游戏</a>
+         <a href="/go/nes" class="item_node">NES</a>
+         <a href="/go/kirby" class="item_node">Kirby</a>
+         <a href="/go/switch" class="item_node">Nintendo Switch</a>
+         <a href="/go/2017" class="item_node">2017</a>
+         <a href="/go/amp" class="item_node">AMP</a>
+         <a href="/go/daydream" class="item_node">Daydream</a>
+         <a href="/go/electron" class="item_node">Electron</a>
+         <a href="/go/algorithm" class="item_node">算法</a>
+         <a href="/go/huawei" class="item_node">华为</a>
+         <a href="/go/rescuetime" class="item_node">RescueTime</a>
+       </div>
+     </div> -->
+      <div class="sep20"></div>
+      <div class="box">
+        <div class="cell"><span class="fade">社区运行状况</span></div>
+        <div class="cell">
+          <table cellpadding="5" cellspacing="0" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td width="50" align="right"><span class="gray">注册会员</span></td>
+                <td width="auto" align="left"><strong>223014</strong></td>
+              </tr>
+              <tr>
+                <td width="50" align="right"><span class="gray">主题</span></td>
+                <td width="auto" align="left"><strong>345068</strong></td>
+              </tr>
+              <tr>
+                <td width="50" align="right"><span class="gray">回复</span></td>
+                <td width="auto" align="left"><strong>4184719</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="inner">
+          <span class="chevron">›</span>
+          <a href="/top/rich">财富排行榜</a>
+          <div class="sep5"></div>
+          <span class="chevron">›</span>
+          <a href="/top/player">消费排行榜</a>
+        </div>
+      </div>
+      <div class="sep20"></div>
+    </div>
