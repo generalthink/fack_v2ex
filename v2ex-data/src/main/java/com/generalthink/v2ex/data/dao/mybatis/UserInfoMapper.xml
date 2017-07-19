@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.generalthink.v2ex.data.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.generalthink.v2ex.data.entity.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="blocked" property="blocked" jdbcType="TINYINT" />
+    <result column="user_img_path" property="userImgPath" jdbcType="VARCHAR" />
+    <result column="personal_website" property="personalWebsite" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="work_position" property="workPosition" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="continuation_day" property="continuationDay" jdbcType="INTEGER" />
+    <result column="login_ip" property="loginIp" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, blocked, user_img_path, personal_website, location, signature, introduction, 
+    work_position, company, last_login_time, continuation_day, login_ip, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.generalthink.v2ex.data.entity.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.generalthink.v2ex.data.entity.UserInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_info (user_id, blocked, user_img_path, 
+      personal_website, location, signature, 
+      introduction, work_position, company, 
+      last_login_time, continuation_day, login_ip, 
+      create_time, update_time)
+    values (#{userId,jdbcType=INTEGER}, #{blocked,jdbcType=TINYINT}, #{userImgPath,jdbcType=VARCHAR}, 
+      #{personalWebsite,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{workPosition,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{continuationDay,jdbcType=INTEGER}, #{loginIp,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.generalthink.v2ex.data.entity.UserInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="blocked != null" >
+        blocked,
+      </if>
+      <if test="userImgPath != null" >
+        user_img_path,
+      </if>
+      <if test="personalWebsite != null" >
+        personal_website,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="workPosition != null" >
+        work_position,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="continuationDay != null" >
+        continuation_day,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="blocked != null" >
+        #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="userImgPath != null" >
+        #{userImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="personalWebsite != null" >
+        #{personalWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="workPosition != null" >
+        #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="continuationDay != null" >
+        #{continuationDay,jdbcType=INTEGER},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.generalthink.v2ex.data.entity.UserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.generalthink.v2ex.data.entity.UserInfo" >
+    update user_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="blocked != null" >
+        blocked = #{blocked,jdbcType=TINYINT},
+      </if>
+      <if test="userImgPath != null" >
+        user_img_path = #{userImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="personalWebsite != null" >
+        personal_website = #{personalWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="workPosition != null" >
+        work_position = #{workPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="continuationDay != null" >
+        continuation_day = #{continuationDay,jdbcType=INTEGER},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.generalthink.v2ex.data.entity.UserInfo" >
+    update user_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      blocked = #{blocked,jdbcType=TINYINT},
+      user_img_path = #{userImgPath,jdbcType=VARCHAR},
+      personal_website = #{personalWebsite,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      work_position = #{workPosition,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      continuation_day = #{continuationDay,jdbcType=INTEGER},
+      login_ip = #{loginIp,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

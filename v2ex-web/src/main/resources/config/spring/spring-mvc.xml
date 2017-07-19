@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 只扫描Controller 注解 -->
-	<context:component-scan base-package="com.generalthink.fackv2ex.web.controller">
+	<context:component-scan base-package="com.generalthink.v2ex.web.controller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation"

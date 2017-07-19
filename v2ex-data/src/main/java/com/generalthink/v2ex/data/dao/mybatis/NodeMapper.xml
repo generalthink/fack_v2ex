@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.generalthink.v2ex.data.dao.NodeMapper" >
+  <resultMap id="BaseResultMap" type="com.generalthink.v2ex.data.entity.Node" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="aliases" property="aliases" jdbcType="VARCHAR" />
+    <result column="node_group_id" property="nodeGroupId" jdbcType="INTEGER" />
+    <result column="node_category_id" property="nodeCategoryId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, aliases, node_group_id, node_category_id, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.generalthink.v2ex.data.entity.NodeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from node
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from node
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from node
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.generalthink.v2ex.data.entity.Node" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into node (name, aliases, node_group_id, 
+      node_category_id, create_time)
+    values (#{name,jdbcType=VARCHAR}, #{aliases,jdbcType=VARCHAR}, #{nodeGroupId,jdbcType=INTEGER}, 
+      #{nodeCategoryId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.generalthink.v2ex.data.entity.Node" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="aliases != null" >
+        aliases,
+      </if>
+      <if test="nodeGroupId != null" >
+        node_group_id,
+      </if>
+      <if test="nodeCategoryId != null" >
+        node_category_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="aliases != null" >
+        #{aliases,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeGroupId != null" >
+        #{nodeGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeCategoryId != null" >
+        #{nodeCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.generalthink.v2ex.data.entity.NodeExample" resultType="java.lang.Integer" >
+    select count(*) from node
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.generalthink.v2ex.data.entity.Node" >
+    update node
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="aliases != null" >
+        aliases = #{aliases,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeGroupId != null" >
+        node_group_id = #{nodeGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeCategoryId != null" >
+        node_category_id = #{nodeCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.generalthink.v2ex.data.entity.Node" >
+    update node
+    set name = #{name,jdbcType=VARCHAR},
+      aliases = #{aliases,jdbcType=VARCHAR},
+      node_group_id = #{nodeGroupId,jdbcType=INTEGER},
+      node_category_id = #{nodeCategoryId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
