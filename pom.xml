@@ -39,6 +39,7 @@
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<commons-collections4.version>4.1</commons-collections4.version>
 		<commons-logging.version>1.2</commons-logging.version>
+		<jcaptcha.version>1.0-RC6</jcaptcha.version>
 		<!-- log -->
 		<slf4j.version>1.7.24</slf4j.version>
 		<jcl-over-slf4j.version>1.7.24</jcl-over-slf4j.version>
@@ -192,6 +193,18 @@
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
 				<version>${commons-logging.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.octo.captcha</groupId>
+				<artifactId>jcaptcha-all</artifactId>
+				<version>${jcaptcha.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- google表达式引擎 -->
