@@ -129,4 +129,10 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getUserByNameOrEmail" parameterType="com.generalthink.v2ex.data.entity.User" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from user
+    where ( name = #{name} or email = #{email}) and password = #{password}
+  </select>
 </mapper>

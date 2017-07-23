@@ -6,8 +6,8 @@ import com.generalthink.v2ex.data.entity.User;
 
 public interface UserService {
 
-    public Optional<User> login(String name,String password);
+    public Optional<User> signin(String account,String password);
     
-    public User signin(String name,String password,String email);
+    public User signup(String name,String password,String email);
 
 }

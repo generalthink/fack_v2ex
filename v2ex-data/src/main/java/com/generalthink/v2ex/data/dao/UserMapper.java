@@ -1,8 +1,9 @@
 package com.generalthink.v2ex.data.dao;
 
+import java.util.List;
+
 import com.generalthink.v2ex.data.entity.User;
 import com.generalthink.v2ex.data.entity.UserExample;
-import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -20,4 +21,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User getUserByNameOrEmail(User record);
 }
