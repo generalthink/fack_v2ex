@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css" />
+</head>
+<body>
+<% include("head.html"){} %>
+<div id="Wrapper">
+  <div class="content">
+    <div id="Leftbar"></div>
+      <div id="Rightbar">
+      <div class="sep20"></div>
+      	<% include("user_operation.html"){} %>
+      </div>
+    <div id="Main">
+    <div class="sep20"></div>
+                
+<div class="box">
+    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 注册</div>
+    <div class="problem">请解决以下问题然后再提交：<ul><li>用户名 <strong>aaa</strong> 已经被注册，请重新选择一个</li><li>请不要设置小于 6 位的密码</li><li>输入的电子邮件地址格式不正确</li><li>输入的验证码不正确</li></ul></div>
+    <div class="inner">
+        <form method="post" action="/signup">
+        <table cellpadding="5" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="120" align="right" valign="top"><div class="sep5"></div>用户名</td>
+                <td width="auto" align="left"><input type="text" class="sl" name="46f07a7a3f1cee4a5d85aae728d0126a48ed26a9cf387105eba7b15c2658e89a" value="aaa" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用半角的 a-z 或数字 0-9</span></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">密码</td>
+                <td width="auto" align="left"><input type="password" class="sl" name="a65a76c4d8398981c59a9647a75505b62fc3c417703cfd0bd00d5e58acb18a20" value="bb" autocorrect="off" spellcheck="false" autocapitalize="off" /></td>
+            </tr>
+            <tr>
+                <td width="120" align="right" valign="top"><div class="sep5"></div>电子邮件</td>
+                <td width="auto" align="left"><input type="email" class="sl" name="9d85735132a18a9e28209782eaf9d87c0d65c60750fa6eb77bd4dd7a0055acc0" value="cc@dd" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用真实电子邮箱注册，我们不会将你的邮箱地址分享给任何人</span></td>
+            </tr>
+            <tr>
+                <td width="120" align="right">你是机器人么？</td>
+                <td width="auto" align="left"><div style="background-image: url('${ctxPath}/captcha/code?once=27138'); background-repeat: no-repeat; width: 320px; height: 80px; border-radius: 3px; border: 1px solid #ccc;"></div><div class="sep10"></div><input type="text" class="sl" name="348dce1614e0e61129550286d78f612e577116d4974dbc4057985a2e10722dcc" value="" autocorrect="off" spellcheck="false" autocapitalize="off" placeholder="请输入上图中的验证码" /></td>
+            </tr>
+            <tr>
+                <td width="120" align="right"></td>
+                <td width="auto" align="left"><input type="hidden" name="once" value="27138" /><input type="submit" class="super normal button" value="注册" /></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</div>
+
+</div>
+            
+  </div>
+  <div class="c"></div>
+  <div class="sep20"></div>
+</div>
+<% include("foot.html"){} %>
+ </body>
+ </html>
