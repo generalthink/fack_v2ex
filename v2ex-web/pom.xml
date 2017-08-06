@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>v2ex-web</artifactId>
 	<packaging>war</packaging>
-	<name>v2ex-we Maven Webapp</name>
+	<name>v2ex-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>

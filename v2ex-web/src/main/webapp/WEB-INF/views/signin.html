@@ -1,70 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <meta name="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css" />
+<title></title>
+<meta charset="utf-8" />
+<meta name="Content-Type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="${ctxPath}/static/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/v2ex.form.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css" />
+<script type="text/javascript">
+
+	//字母和数字的验证  
+	jQuery.validator.addMethod("v2exAccount", function(value, element) {  
+	    var chrnum = /^([a-zA-Z0-9]+)$/;  
+	    return this.optional(element) || (chrnum.test(value)) || v2exForm.email(value);  
+	}, "只能输入数字和字母(字符A-Z, a-z, 0-9)或者正确的Email地址");
+	
+	$(function() {
+		$(".problem").show();
+		$("#signinForm").validate({
+			 rules: {
+                 account: { required: true, v2exAccount : true},
+                 password: { required: true}
+             },
+             messages:{
+            	 account:{
+            		 required:"请输入用户名或电子邮箱"
+            	 },
+            	 password:{
+            		 required:"请输入密码"
+            	 }
+             },
+             onKeyUp:false,
+             onfocusout:false,
+            /*  errorPlacement: function(error, element) {
+            	 if(error && error[0].innerText) {
+            		 error.appendTo($("<li></li>").appendTo($(".problem ul")));
+            	 } 
+             }, */
+             showErrors:function(errorMap,errorList) {
+            	 $(".problem ul").empty();
+            	 if(errorList && errorList.length > 0) {
+            		$(".problem").show();
+            		$(".problem span").html("请解决以下问题再提交:");
+            		$.each(errorList,function(i,error) {
+            			$("<li></li>").html(error.message).appendTo($(".problem ul"));   			
+            		})
+            	 } else {
+            		 $(".problem  ul").empty();
+            	 }
+            	 //this.defaultShowErrors();
+             }
+		});
+	
+	
+	})
+	
+</script>
+	
 </head>
 <body>
-<% include("head.html"){} %>
-<div id="Wrapper">
-        <div class="content">
-            
-            <div id="Leftbar"></div>
-            <div id="Rightbar">
-                <div class="sep20"></div>
-                
-<div class="box">
-<div class="header">其他登录方式</div>
-<div class="cell" style="text-align: center;">
-<a onclick="location.href = '/auth/google?once=26405';" href="#" class="google-signin"></a>
-</div>
-</div>
+	<% include("head.html"){} %>
+	<div id="Wrapper">
+		<div class="content">
 
-            </div>
-            <div id="Main">
-                <div class="sep20"></div>
-                
-<div class="box">
-    <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 登录 &nbsp;<li class="fa fa-lock"></li></div>
-    
-    <div class="message" onclick="$(this).slideUp('fast');">你要查看的页面需要先登录</div>
-    <div class="cell">
-        <form method="post" action="/signin">
-        <table cellpadding="5" cellspacing="0" border="0" width="100%">
-            <tr>
-                <td width="120" align="right">用户名</td>
-                <td width="auto" align="left"><input type="text" class="sl" name="e5e7d52fedf96e07c9df46d7631dce9654f685c822c487f2d08c653bc30364f8" value="" autofocus="autofocus" autocorrect="off" spellcheck="false" autocapitalize="off" placeholder="用户名或电子邮箱地址" /></td>
-            </tr>
-            <tr>
-                <td width="120" align="right">密码</td>
-                <td width="auto" align="left"><input type="password" class="sl" name="8adb9ec3e67968909173a8db475e040ee831572e47f45af6eb24ef7a7c755fbd" value="" autocorrect="off" spellcheck="false" autocapitalize="off" /></td>
-            </tr>
-            <tr>
-                <td width="120" align="right"></td>
-                <td width="auto" align="left"><input type="hidden" value="26405" name="once" /><input type="submit" class="super normal button" value="登录" /></td>
-            </tr>
-            <tr>
-                <td width="120" align="right"></td>
-                <td width="auto" align="left"><a href="/forgot">我忘记密码了</a></td>
-            </tr>
-        </table>
-        
-        <input type="hidden" value="https://www.v2ex.com/signup" name="next" />
-        
-        </form>
-    </div>
-    
-</div>
+			<div id="Leftbar"></div>
+			<div id="Rightbar">
+				<div class="sep20"></div>
 
-            </div>
-            
-            
-        </div>
-        <div class="c"></div>
-        <div class="sep20"></div>
-    </div>
-    <% include("foot.html"){} %>
- </body>
- </html>
+				<div class="box">
+					<div class="header">其他登录方式</div>
+					<div class="cell" style="text-align: center;">
+						<a onclick="location.href = '/auth/google?once=26405';" href="#"
+							class="google-signin"></a>
+					</div>
+				</div>
+
+			</div>
+			<div id="Main">
+				<div class="sep20"></div>
+
+				<div class="box">
+					<div class="header">
+						<a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 登录
+						&nbsp;
+					</div>
+					<div class="problem" style="display:none">
+						<span></span>
+						<ul></ul>
+					</div>
+					<div class="message" onclick="$(this).slideUp('fast');">你要查看的页面需要先登录</div>
+					<div class="cell">
+						<form method="post" action="${ctxPath}/signin" id="signinForm">
+							<table cellpadding="5" cellspacing="0" border="0" width="100%">
+								<tr>
+									<td width="120" align="right">用户名</td>
+									<td width="auto" align="left"><input type="text"
+										class="sl"
+										name="account"
+										value="" placeholder="用户名或电子邮箱地址" /></td>
+								</tr>
+								<tr>
+									<td width="120" align="right">密码</td>
+									<td width="auto" align="left"><input type="password"
+										class="sl"
+										name="password"
+										value="" /></td>
+								</tr>
+								<tr>
+									<td width="120" align="right"></td>
+									<td width="auto" align="left"><input type="hidden"
+										value="26405" name="once" /><input type="submit"
+										class="super normal button" value="登录" /></td>
+								</tr>
+								<tr>
+									<td width="120" align="right"></td>
+									<td width="auto" align="left"><a href="/forgot">我忘记密码了</a></td>
+								</tr>
+							</table>
+
+							<input type="hidden" value="https://www.v2ex.com/signup"
+								name="next" />
+
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+		<div class="c"></div>
+		<div class="sep20"></div>
+	</div>
+	<% include("foot.html"){} %>
+</body>
+</html>

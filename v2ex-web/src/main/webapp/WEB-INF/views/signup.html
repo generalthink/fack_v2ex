@@ -5,6 +5,85 @@
     <meta charset="utf-8" />
     <meta name="Content-Type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css" />
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+	//字母和数字的验证  
+	jQuery.validator.addMethod("v2exAccount", function(value, element) {  
+	    var chrnum = /^([a-zA-Z0-9]+)$/;  
+	    return this.optional(element) || (chrnum.test(value));  
+	}, "只能输入数字和字母(字符A-Z, a-z, 0-9)或者正确的Email地址");
+	
+	$(function() {
+		$("#signupForm").validate({
+			 rules: {
+                 name: { required: true, rangelength:[6,12],v2exAccount : true,
+                	  remote: {
+                         url: '${ctxPath}/validateName',
+                         type: 'POST',
+                         dateType: 'json',
+                         data: {name:function(){
+                        	 return $("input[name='name']").val();
+                         }}
+                        }  
+                 },
+                 emial:{required: true,email:true,
+                	 remote: {
+	                     url: '${ctxPath}/validateEmail',
+	                     type: 'POST',
+	                     dateType: 'json',
+	                     data: {email:function(){
+	                    	 return $("input[name='email']").val();
+	                     }}
+                    }  },
+                 password: {required: true,minlength:6},
+                 valCode : {required: true}
+             },
+             messages:{
+            	 name:{
+            		 required:"用户名只能使用大小写英文字母和数字 ,且长度在6-12位之间",
+            		 v2exAccount:"用户名只能使用大小写英文字母和数字 ,且长度在6-12位之间",
+            		 rangelength:"用户名只能使用大小写英文字母和数字 ,且长度在6-12位之间",
+            		 remote:"该用户已经被注册,请使用其他用户名"
+            	 },
+            	 email:{
+            		 required:"请输入合法的邮箱地址",
+            		 email:"请输入合法的邮箱地址",
+            		 remote:"该邮箱地址已经被注册,请使用其他邮箱"
+            	 },
+            	 password:{
+            		 required:"请输入长度不小于6位的密码",
+            		 minlength:"请输入长度不小于6位的密码"
+            	 },
+            	 valCode:{
+            		 required:"请输入验证码"
+            	 }
+             },
+             onKeyUp:false,
+             onfocusout:false,
+            /*  errorPlacement: function(error, element) {
+            	 if(error && error[0].innerText) {
+            		 error.appendTo($("<li></li>").appendTo($(".problem ul")));
+            	 } 
+             }, */
+             showErrors:function(errorMap,errorList) {
+            	 $(".problem ul").empty();
+            	 if(errorList && errorList.length > 0) {
+            		$(".problem").show();
+            		$(".problem span").html("请解决以下问题再提交:");
+            		$.each(errorList,function(i,error) {
+            			$("<li></li>").html(error.message).appendTo($(".problem ul"));   			
+            		})
+            	 } else {
+            		 $(".problem  ul").empty();
+            	 }
+            	 //this.defaultShowErrors();
+             }
+		});
+	
+	
+	})
+	</script>
 </head>
 <body>
 <% include("head.html"){} %>
@@ -20,25 +99,25 @@
                 
 <div class="box">
     <div class="header"><a href="/">V2EX</a> <span class="chevron">&nbsp;›&nbsp;</span> 注册</div>
-    <div class="problem">请解决以下问题然后再提交：<ul><li>用户名 <strong>aaa</strong> 已经被注册，请重新选择一个</li><li>请不要设置小于 6 位的密码</li><li>输入的电子邮件地址格式不正确</li><li>输入的验证码不正确</li></ul></div>
+    <div class="problem" style="display:none"><span></span><ul></ul></div>
     <div class="inner">
-        <form method="post" action="/signup">
+        <form method="post" id="signupForm" action="${ctxPath}/signup">
         <table cellpadding="5" cellspacing="0" border="0" width="100%">
             <tr>
                 <td width="120" align="right" valign="top"><div class="sep5"></div>用户名</td>
-                <td width="auto" align="left"><input type="text" class="sl" name="46f07a7a3f1cee4a5d85aae728d0126a48ed26a9cf387105eba7b15c2658e89a" value="aaa" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用半角的 a-z 或数字 0-9</span></td>
+                <td width="auto" align="left"><input type="text" class="sl" name="name" value="" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用半角的 a-z 或数字 0-9</span></td>
             </tr>
             <tr>
                 <td width="120" align="right">密码</td>
-                <td width="auto" align="left"><input type="password" class="sl" name="a65a76c4d8398981c59a9647a75505b62fc3c417703cfd0bd00d5e58acb18a20" value="bb" autocorrect="off" spellcheck="false" autocapitalize="off" /></td>
+                <td width="auto" align="left"><input type="password" class="sl" name="password" value="" autocorrect="off" spellcheck="false" autocapitalize="off" /></td>
             </tr>
             <tr>
                 <td width="120" align="right" valign="top"><div class="sep5"></div>电子邮件</td>
-                <td width="auto" align="left"><input type="email" class="sl" name="9d85735132a18a9e28209782eaf9d87c0d65c60750fa6eb77bd4dd7a0055acc0" value="cc@dd" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用真实电子邮箱注册，我们不会将你的邮箱地址分享给任何人</span></td>
+                <td width="auto" align="left"><input type="email" class="sl" name="email" value="" autocorrect="off" spellcheck="false" autocapitalize="off" /><div class="sep5"></div><span class="fade">请使用真实电子邮箱注册，我们不会将你的邮箱地址分享给任何人</span></td>
             </tr>
             <tr>
                 <td width="120" align="right">你是机器人么？</td>
-                <td width="auto" align="left"><div style="background-image: url('${ctxPath}/captcha/code?once=27138'); background-repeat: no-repeat; width: 320px; height: 80px; border-radius: 3px; border: 1px solid #ccc;"></div><div class="sep10"></div><input type="text" class="sl" name="348dce1614e0e61129550286d78f612e577116d4974dbc4057985a2e10722dcc" value="" autocorrect="off" spellcheck="false" autocapitalize="off" placeholder="请输入上图中的验证码" /></td>
+                <td width="auto" align="left"><div style="background-image: url('${ctxPath}/captcha/code?once=27138'); background-repeat: no-repeat; width: 320px; height: 80px; border-radius: 3px; border: 1px solid #ccc;"></div><div class="sep10"></div><input type="text" class="sl" name="valCode" value="" autocorrect="off" spellcheck="false" autocapitalize="off" placeholder="请输入上图中的验证码" /></td>
             </tr>
             <tr>
                 <td width="120" align="right"></td>
