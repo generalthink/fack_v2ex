@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
     public Optional<User> signin(String account, String password) {
         User userParameter = User.builder().name(account).email(account).password(password).build();
         User user = userMapper.getUserByNameOrEmail(userParameter);
-        return Optional.of(user);
+       
+        return Optional.ofNullable(user);
     }
 
     @Override

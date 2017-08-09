@@ -7,11 +7,11 @@
     <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/style.css" />
 </head>
 <body>
-<% include("head.html",{currentUser:currentUser!}){} %>
+<% include("head.html")%>
 <div id="Wrapper">
   <div class="content">
     <div id="Leftbar"></div>
-    <% include("right.html",{currentUser:currentUser!}){} %>
+    <% include("right.html"){} %>
     <% include("main.html"){} %>
   </div>
   <div class="c"></div>

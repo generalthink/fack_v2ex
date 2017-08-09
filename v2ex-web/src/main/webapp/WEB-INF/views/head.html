@@ -21,9 +21,9 @@
               <td width="570" align="right" style="padding-top: 2px;">
                 <a href="/" class="top">首页</a>&nbsp;&nbsp;&nbsp;
                 <%
-                	if(has(currentUser)) {
+                	if(isNotEmpty(session.currentUser)) {
                 %>
-	                <a href="/member/thinkmore" class="top">thinkmore</a>&nbsp;&nbsp;&nbsp;
+	                <a href="/member/thinkmore" class="top">${session.currentUser.name}</a>&nbsp;&nbsp;&nbsp;
 	                <a href="https://workspace.v2ex.com/" target="_blank" class="top">工作空间</a>&nbsp;&nbsp;&nbsp;
 	                <a href="/notes" class="top">记事本</a>&nbsp;&nbsp;&nbsp;
 	                <a href="/t" class="top">时间轴</a>&nbsp;&nbsp;&nbsp;
