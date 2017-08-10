@@ -92,6 +92,15 @@ public class LoginController {
         boolean existEmail = userService.existEmail(email);
         return !existEmail;
     }
-    
+    /**
+     * 登出
+     * @param session
+     * @return
+     */
+    @GetMapping("/signout")
+    public String signout(HttpSession session) {
+        session.removeAttribute(Constants.CURRENT_USER);
+        return "index";
+    }
 
 }

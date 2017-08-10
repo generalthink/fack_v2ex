@@ -23,7 +23,7 @@
                 <%
                 	if(isNotEmpty(session.currentUser)) {
                 %>
-	                <a href="/member/thinkmore" class="top">${session.currentUser.name}</a>&nbsp;&nbsp;&nbsp;
+	                <a href="/member/thinkmore" class="top">${session.currentUser.name!}</a>&nbsp;&nbsp;&nbsp;
 	                <a href="https://workspace.v2ex.com/" target="_blank" class="top">工作空间</a>&nbsp;&nbsp;&nbsp;
 	                <a href="/notes" class="top">记事本</a>&nbsp;&nbsp;&nbsp;
 	                <a href="/t" class="top">时间轴</a>&nbsp;&nbsp;&nbsp;
