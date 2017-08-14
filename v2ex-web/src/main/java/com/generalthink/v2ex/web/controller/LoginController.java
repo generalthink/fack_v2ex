@@ -103,4 +103,10 @@ public class LoginController {
         return "index";
     }
 
+    @PostMapping("/test")
+    public void test(String name) throws RuntimeException {
+        if(name == null) {
+            throw new NullPointerException("heheda");
+        }
+    }
 }
