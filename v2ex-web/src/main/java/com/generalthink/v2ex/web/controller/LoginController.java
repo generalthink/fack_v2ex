@@ -83,14 +83,14 @@ public class LoginController {
     public Boolean validateName(@RequestParam(required=true)String name) {
         boolean existName = userService.existUserName(name);
         //jquery validate remote验证，如果为false表示验证不通过
-        return !existName;
+        return existName;
     }
     
     @ResponseBody
     @RequestMapping("/validateEmail")
     public Boolean validateEmail(@RequestParam(required=true)String email) {
         boolean existEmail = userService.existEmail(email);
-        return !existEmail;
+        return existEmail;
     }
     /**
      * 登出

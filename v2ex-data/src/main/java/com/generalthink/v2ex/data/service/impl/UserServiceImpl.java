@@ -38,10 +38,7 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andNameEqualTo(name);
         List<User> userList = userMapper.selectByExample(example);
-        if(CollectionUtils.isNotEmpty(userList)) {
-            return true;
-        }
-        return false;
+        return CollectionUtils.isNotEmpty(userList);
     }
 
     @Override
@@ -49,10 +46,7 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andEmailEqualTo(email);
         List<User> userList = userMapper.selectByExample(example);
-        if(CollectionUtils.isNotEmpty(userList)) {
-            return true;
-        }
-        return false;
+        return CollectionUtils.isNotEmpty(userList);
     }
 
 }
