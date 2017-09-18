@@ -21,6 +21,8 @@ public class Topic {
 
     private String title;
 
+    private Integer clickCount;
+
     private Date createTime;
 
     private Date updateTime;

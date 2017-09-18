@@ -41,10 +41,6 @@
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.generalthink.v2ex.data.entity.UserExample" >
     select
-    <if test="distinct" >
-      distinct
-    </if>
-    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from user
     <if test="_parameter != null" >

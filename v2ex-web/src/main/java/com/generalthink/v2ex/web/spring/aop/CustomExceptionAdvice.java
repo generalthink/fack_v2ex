@@ -14,7 +14,7 @@ public class CustomExceptionAdvice {
 
     @ExceptionHandler(RuntimeException.class)
     public ModelAndView dealException(RuntimeException exception,HttpServletRequest request) {
-        
+        exception.printStackTrace();
         log.error("Exception Info : {} and url : {},", exception,request.getRequestURL());
         ModelAndView mav = new ModelAndView();
         mav.addObject("errorMsg", "异常操作,请查看日志");
