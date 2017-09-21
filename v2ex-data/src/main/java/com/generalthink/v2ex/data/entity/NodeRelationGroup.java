@@ -1,7 +1,5 @@
 package com.generalthink.v2ex.data.entity;
 
-import java.util.Date;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,14 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access=AccessLevel.PRIVATE)
-public class Node {
+public class NodeRelationGroup {
     private Integer id;
 
-    private String name;
+    private Integer nodeId;
 
-    private String aliases;
-
-    private Integer nodeCategoryId;
-
-    private Date createTime;
+    private Integer nodeGroupId;
 }
