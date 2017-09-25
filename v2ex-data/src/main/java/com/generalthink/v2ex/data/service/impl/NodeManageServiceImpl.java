@@ -29,9 +29,9 @@ public class NodeManageServiceImpl implements NodeManageService {
     private NodeRelationGroupMapper nodeRelationGroupMapper;
     
     @Override
-    public Integer insertNodeCategory(NodeCategory nodeCategory) {
-        
-        return null;
+    public Integer insertNodeCategory(String nodeCategoryName) {
+        NodeCategory category = NodeCategory.builder().name(nodeCategoryName).build();
+        return nodeCategoryMapper.insert(category);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class NodeManageServiceImpl implements NodeManageService {
     }
 
     @Override
-    public Integer insertNodeGroup(NodeGroup nodeGroup) {
-
-        return nodeGroupMapper.insert(nodeGroup);
+    public Integer insertNodeGroup(String nodeGroupName) {
+        NodeGroup group = NodeGroup.builder().name(nodeGroupName).build();
+        return nodeGroupMapper.insert(group);
     }
 
     @Override
@@ -83,6 +83,17 @@ public class NodeManageServiceImpl implements NodeManageService {
     @Override
     public void deleteNodeRelationGroupById(Integer id) {
         nodeRelationGroupMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Boolean existNodeCategory(Integer nodeCategoryId) {
+        
+        return nodeCategoryMapper.selectByPrimaryKey(nodeCategoryId) != null;
+    }
+
+    @Override
+    public Boolean existNodeGroup(Integer nodeGroupId) {
+        return nodeGroupMapper.selectByPrimaryKey(nodeGroupId) != null;
     }
 
 }

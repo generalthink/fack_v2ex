@@ -1,17 +1,15 @@
 package com.generalthink.v2ex.data.service;
 
 import com.generalthink.v2ex.data.entity.Node;
-import com.generalthink.v2ex.data.entity.NodeCategory;
-import com.generalthink.v2ex.data.entity.NodeGroup;
 import com.generalthink.v2ex.data.entity.NodeRelationGroup;
 
 public interface NodeManageService {
 
-    Integer insertNodeCategory(NodeCategory nodeCategory);
+    Integer insertNodeCategory(String nodeCategoryName);
     
     Integer deleteNodeCategoryById(Integer id);
     
-    Integer insertNodeGroup(NodeGroup nodeGroup);
+    Integer insertNodeGroup(String nodeGroupName);
     
     void deleteNodeGroupById(Integer id);
     
@@ -26,5 +24,9 @@ public interface NodeManageService {
     void updateNodeRelationGroup(NodeRelationGroup nrg);
     
     void deleteNodeRelationGroupById(Integer id);
+    
+    Boolean existNodeCategory(Integer nodeCategoryId);
+    
+    Boolean existNodeGroup(Integer nodeGroupId);
     
 }
