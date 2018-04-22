@@ -13,7 +13,7 @@ import com.generalthink.v2ex.data.entity.NodeGroup;
 import com.generalthink.v2ex.data.entity.NodeRelationGroup;
 import com.generalthink.v2ex.data.service.NodeManageService;
 
-@Service("nodeManageService")
+@Service
 public class NodeManageServiceImpl implements NodeManageService {
 
     @Autowired

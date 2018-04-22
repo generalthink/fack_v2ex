@@ -15,6 +15,7 @@
 
 	<!-- 配置datasource以及mybatis -->	
 	<import resource="spring-datasource.xml"/>
+	<import resource="spring-quartz.xml"/>
     
     <!-- 配置shiro -->
     <!-- <import resource="spring-shiro.xml"/> -->
